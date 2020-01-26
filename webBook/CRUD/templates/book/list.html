@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{page_title}}
+{% endblock title %}
+
+{% block contents %}
+  <h1>{{page_title}}</h1>
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Number</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Pages</th>
+        <th scope="col">Type</th>
+        <th scope="col">Pub Date</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Update</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for book in Book_List %}
+        <tr>
+            <th scope="row">{{forloop.counter}}</th>
+                <td>{{book.title}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.pages}}</td>
+                <td>{{book.types}}</td>
+                <td>{{book.pub_date}}</td>
+                <td><a class="btn btn-danger" href="{% url 'CRUD:delete' book.id %}">Delete</a></td>>
+                <td><a class="btn btn-info" href="{% url 'CRUD:update' book.id %}">Update</a></td>>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <a class="btn btn-primary" href="{% url 'CRUD:create' %}">Add New Book</a>
+{% endblock contents %}
